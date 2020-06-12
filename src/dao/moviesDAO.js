@@ -64,6 +64,9 @@ export default class MoviesDAO {
       cursor = await movies
         .find({ countries: { $in: countries } })
         .project({ title: 1 })
+
+      let { _id, title } = await cursor.next()
+      console.log(_id, title)
     } catch (e) {
       console.error(`Unable to issue find command, ${e}`)
       return []
